@@ -1,6 +1,6 @@
 <?php
     echo <<<HTML
-        Hola Pana <br><a href="index.html" target="_self">Volver</a><br>
+        Hola Pana <br><a href="index.php" target="_self">Volver</a><br>
     HTML;
     echo "<pre>";
     var_dump($_POST);
