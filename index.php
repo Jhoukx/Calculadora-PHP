@@ -3,12 +3,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 
-
-$texto = 0;
+$texto = "";
 session_start();
 //Unir caracteres
 if (isset($_POST["botones"])){
-    $texto =intval($_POST["resultado"]. $_POST["botones"]);
+    $texto =$_POST["resultado"]. $_POST["botones"];
 }
 //Almacenar operacion
 if (isset($_POST["operacion"])){
@@ -17,21 +16,26 @@ if (isset($_POST["operacion"])){
     $_SESSION["signo"]= $_POST["operacion"];
     $texto = "";
 }
-//Resultados
-if (isset($_POST["igual"])){
+// Resultados
+if (isset($_POST["igual"])) {
     $num2 = floatval($_POST["resultado"]);
 
-    if ($_SESSION["signo"]==="*"){
-        $texto = number_format(($_SESSION["num1"] * $num2),2);
-    }else if ($_SESSION["signo"]=="-"){
-        $texto = number_format(($_SESSION["num1"] - $num2),2);
-    }else if ($_SESSION["signo"]=="+"){
-        $texto = number_format(($_SESSION["num1"] + $num2),2);
-    }else if ($_SESSION["signo"]==="/"){
-        $texto = number_format(($_SESSION["num1"]/$num2),2);
+    try {
+        if ($_SESSION["signo"] === "*") {
+            $texto = $_SESSION["num1"] * $num2;
+        } else if ($_SESSION["signo"] === "-") {
+            $texto = $_SESSION["num1"] - $num2;
+        } else if ($_SESSION["signo"] === "+") {
+            $texto = $_SESSION["num1"] + $num2;
+        } else if ($_SESSION["signo"] === "/") {
+            ($num2 != 0) 
+            ? $texto = $_SESSION["num1"] / $num2
+            :throw new Exception("Error 🥴: División entre cero");
+            
+        }
+    } catch (Exception $e) {
+        $texto = $e->getMessage();
     }
-    
-    
 }
 // Usar boton flecha
 if (isset($_POST["funciones"])){
@@ -89,16 +93,18 @@ if (isset($_POST["funciones"])){
                             <button type="submit" class="botones" name="botones"  value="6">6</button>
                             <button type="submit" class="botones" name="operacion"  value="/">/</button>
                         </div>
-                        <div class="row" style="margin-bottom: -66px;">
+                        <div class="row">
                             <button type="submit" class="botones" name="botones"  value="1">1</button>
                             <button type="submit" class="botones" name="botones"  value="2">2</button>
                             <button type="submit" class="botones" name="botones"  value="3">3</button>
-                            <button type="submit" name="igual"  id="igual" value="=">=</button>
+                            <button type="submit" class="botones" name="funciones"  value="²">X²</button>
                         </div>
                         <div class="row ultimos">
                             <button type="submit" class="botones" name="botones"  value="0">0</button>
-                            <button type="submit" class="botones" name="funciones"  value="²">X²</button>
+                            <button type="submit" class="botones" name="botones"  value=".">.</button>
                             <button type="submit" class="botones" name="funciones"  value="c">CE</button>
+                            <button type="submit" name="igual"  id="igual" value="=">=</button>
+
                         </div>
                     </form>
                 </div>

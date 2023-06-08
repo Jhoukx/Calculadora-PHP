@@ -26,8 +26,9 @@ body{
 }
 #igual{
     width: 4rem;
-    height: 8.5rem;
-    background-color: rgb(65, 187, 96);
+    height: 4rem;
+    font-size: x-large;
+    margin: 2px;
     border-radius: 15px;
 }
 .borrador{
