@@ -71,7 +71,7 @@ if (isset($_POST["funciones"])){
         <form  method="POST">
             <div class="row">
                 <h1>Calculadora</h1>
-                <input type="text" class="resultado" name="resultado" readonly value="<?php echo $texto ?>">
+                <input type="text" class="resultado" name="resultado"  value="<?php echo $texto ?>">
             </div>
             <div class="row">
                 <div class="col">
