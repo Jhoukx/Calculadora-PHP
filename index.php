@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 
 $texto = "";
@@ -15,6 +15,9 @@ if (isset($_POST["operacion"])){
     $_SESSION["num1"]=$num1;
     $_SESSION["signo"]= $_POST["operacion"];
     $texto = "";
+}
+if($_POST["resultado"] == "" && $_POST["operacion"]=="-"){
+    $texto = $_POST["operacion"];
 }
 // Resultados
 if (isset($_POST["igual"])) {
